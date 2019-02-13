@@ -11,9 +11,9 @@ fn main() {
             // if first character is a vowel we can just print it easily
             if "aeiouyåäö".contains(lowercase.as_str()) {
                 print!("{}-hay ", word);
-            } else {
+            } else if let Some(second_char) = chars.next() {
                 // get second character in case we need to transform it
-                let mut second = chars.next().unwrap().to_string();
+                let mut second = second_char.to_string();
 
                 // if the first character was uppercase...
                 if first != lowercase {
@@ -26,6 +26,8 @@ fn main() {
                        second,
                        &word[(first.len() + second.len())..],
                        lowercase);
+            } else {
+                print!("{}-{}ay ", &word[first.len()..], lowercase);
             }
         }
         println!();
